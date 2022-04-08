@@ -3,7 +3,7 @@ package kubevip
 import (
 	"net/url"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
 )
 
 // Config defines all of the settings for the Kube-Vip Pod
@@ -91,6 +91,12 @@ type Config struct {
 
 	// MetalProjectID, is the name of a particular defined project
 	MetalProjectID string
+
+	// EnablePacket, will use the metal API to update the EIP <-> VIP (if BGP is enabled then BGP will be used)
+	EnableLeaseweb bool `yaml:"enableLeaseweb"`
+
+	// MetalAPIKey, is the API token used to authenticate to the API
+	LeasewebAPIKey string
 
 	// ProviderConfig, is the path to a provider configuration file
 	ProviderConfig string

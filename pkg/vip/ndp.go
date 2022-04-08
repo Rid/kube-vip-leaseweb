@@ -3,7 +3,6 @@ package vip
 import (
 	"fmt"
 	"net"
-	"net/netip"
 
 	"github.com/mdlayher/ndp"
 
@@ -45,16 +44,16 @@ func (n *NdpResponder) Close() error {
 
 // SendGratuitous broadcasts an NDP update or returns error if encountered.
 func (n *NdpResponder) SendGratuitous(address string) error {
-	ip, err := netip.ParseAddr(address)
-	if err != nil {
+	ip := net.ParseIP(address)
+	if ip == nil {
 		return fmt.Errorf("failed to parse address %s", ip)
 	}
 
 	log.Infof("Broadcasting NDP update for %s (%s) via %s", address, n.hardwareAddr, n.intf)
-	return n.advertise(netip.IPv6LinkLocalAllNodes(), ip, true)
+	return n.advertise(net.IPv6linklocalallnodes, ip, true)
 }
 
-func (n *NdpResponder) advertise(dst, target netip.Addr, gratuitous bool) error {
+func (n *NdpResponder) advertise(dst, target net.IP, gratuitous bool) error {
 	m := &ndp.NeighborAdvertisement{
 		Solicited:     !gratuitous,
 		Override:      gratuitous, // Should clients replace existing cache entries

@@ -39,7 +39,7 @@ Get the latest version of the `kube-vip` release by parsing the GitHub API. This
 
 `KVVERSION=$(curl -sL https://api.github.com/repos/kube-vip/kube-vip/releases | jq -r ".[0].name")`
 
-To set manually instead, find the desired [release tag](https://github.com/kube-vip/kube-vip/releases):
+To set manually instead, find the desired [release tag](https://github.com/rid/kube-vip-leaseweb/releases):
 
 `export KVVERSION=v0.4.0`
 

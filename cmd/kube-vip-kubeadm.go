@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/kube-vip/kube-vip/pkg/k8s"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/k8s"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	corev1 "k8s.io/api/core/v1"

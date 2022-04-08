@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/cluster"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/cluster"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

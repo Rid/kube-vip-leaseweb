@@ -2,13 +2,14 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/packet"
 	"github.com/packethost/packngo"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/packet"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -32,6 +33,11 @@ func (sm *Manager) startBGP() error {
 				log.Error(err)
 			}
 		}
+	}
+
+	// If Leaseweb is enabled then we can begin our preparation work
+	if sm.config.EnableLeaseweb && sm.config.EnableBGP {
+		return fmt.Errorf("The Leaseweb option does not support BGP")
 	}
 
 	log.Info("Starting the BGP server to advertise VIP routes to VGP peers")

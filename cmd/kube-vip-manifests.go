@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

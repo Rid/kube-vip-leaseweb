@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net"
 
-	api "github.com/osrg/gobgp/v3/api"
+	api "github.com/osrg/gobgp/api"
 )
 
 // AddHost will update peers of a host

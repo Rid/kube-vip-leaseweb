@@ -137,7 +137,7 @@ sudo docker run --network host \
 	--leaderElection | sudo tee /etc/kubernetes/manifests/vip.yaml
 ```
 
-Ensure that `image: ghcr.io/kube-vip/kube-vip:<x>` is modified to point to a specific version (`0.3.7` at the time of writing), refer to [GitHyb](https://github.com/kube-vip/kube-vip/pkgs/container/kube-vip) for details. 
+Ensure that `image: ghcr.io/kube-vip/kube-vip:<x>` is modified to point to a specific version (`0.3.7` at the time of writing), refer to [GitHyb](https://github.com/rid/kube-vip-leaseweb/pkgs/container/kube-vip) for details. 
 
 The **vip** is set to `192.168.0.75` and this first node will elect itself as leader, and as part of the `kubeadm init` it will use the VIP in order to speak back to the initialising api-server.
 

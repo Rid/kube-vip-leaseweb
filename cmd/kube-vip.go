@@ -12,10 +12,11 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
-	"github.com/kube-vip/kube-vip/pkg/manager"
-	"github.com/kube-vip/kube-vip/pkg/packet"
-	"github.com/kube-vip/kube-vip/pkg/vip"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/leaseweb"
+	"github.com/rid/kube-vip-leaseweb/pkg/manager"
+	"github.com/rid/kube-vip-leaseweb/pkg/packet"
+	"github.com/rid/kube-vip-leaseweb/pkg/vip"
 )
 
 // Path to the configuration file
@@ -89,6 +90,10 @@ func init() {
 	kubeVipCmd.PersistentFlags().StringVar(&initConfig.MetalProject, "metalProject", "", "The name of project already created within Equinix Metal")
 	kubeVipCmd.PersistentFlags().StringVar(&initConfig.MetalProjectID, "metalProjectID", "", "The ID of project already created within Equinix Metal")
 	kubeVipCmd.PersistentFlags().StringVar(&initConfig.ProviderConfig, "provider-config", "", "The path to a provider configuration")
+
+	// Leaseweb flags
+	kubeVipCmd.PersistentFlags().BoolVar(&initConfig.EnableLeaseweb, "leasewebFIP", false, "This will use the Leaseweb floating IP API (requires the token ENV) to update the FIP <-> VIP")
+	kubeVipCmd.PersistentFlags().StringVar(&initConfig.LeasewebAPIKey, "leasewebKey", "", "The API token for authenticating with the Leaseweb API")
 
 	// BGP flags
 	kubeVipCmd.PersistentFlags().StringVar(&initConfig.VIPCIDR, "cidr", "32", "The CIDR range for the virtual IP address")
@@ -178,6 +183,16 @@ var kubeVipService = &cobra.Command{
 			configMap = envConfigMap
 		}
 
+		if initConfig.EnableLeaseweb {
+			if providerConfig != "" {
+				providerAPI, err := leaseweb.GetLeasewebConfig(providerConfig)
+				if err != nil {
+					log.Fatalf("%v", err)
+				}
+				initConfig.LeasewebAPIKey = providerAPI
+			}
+		}
+
 		// Define the new service manager
 		mgr, err := manager.New(configMap, &initConfig)
 		if err != nil {
@@ -197,7 +212,6 @@ var kubeVipManager = &cobra.Command{
 	Short: "Start the kube-vip manager",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		log.Infof("Starting kube-vip.io [%s]", Release.Version)
 		// parse environment variables, these will overwrite anything loaded or flags
 		err := kubevip.ParseEnvironment(&initConfig)
 		if err != nil {
@@ -247,6 +261,16 @@ var kubeVipManager = &cobra.Command{
 				}
 				initConfig.MetalAPIKey = providerAPI
 				initConfig.MetalProject = providerProject
+			}
+		}
+
+		if initConfig.EnableLeaseweb {
+			if providerConfig != "" {
+				providerAPI, err := leaseweb.GetLeasewebConfig(providerConfig)
+				if err != nil {
+					log.Fatalf("%v", err)
+				}
+				initConfig.LeasewebAPIKey = providerAPI
 			}
 		}
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kube-vip/kube-vip/cmd"
+	"github.com/rid/kube-vip-leaseweb/cmd"
 )
 
 // Version is populated from the Makefile and is tied to the release TAG

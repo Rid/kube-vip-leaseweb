@@ -154,7 +154,7 @@ the `$GOPATH`.
 
 To develop locally, you can follow these steps:
 
- 1. [Install Go 1.18](https://golang.org/doc/install)
+ 1. [Install Go 1.17](https://golang.org/doc/install)
  2. Checkout your feature branch and `cd` into it.
  3. To build all Go files and install them under `bin`, run `make bin`
  4. To run all Go unit tests, run `make test-unit`
@@ -242,12 +242,12 @@ discussion, see [docs/issue-management.md](docs/contributors/issue-management.md
 ### Filing An Issue
 
 Help is always appreciated. If you find something that needs fixing, please file
-an issue [here](https://github.com/kube-vip/kube-vip/issues). Please ensure
+an issue [here](https://github.com/rid/kube-vip-leaseweb/issues). Please ensure
 that the issue is self explanatory and has enough information for an assignee to
 get started.
 
 Before picking up a task, go through the existing
-[issues](https://github.com/kube-vip/kube-vip/issues) and make sure that your
+[issues](https://github.com/rid/kube-vip-leaseweb/issues) and make sure that your
 change is not already being worked on. If it does not exist, please create a new
 issue and discuss it with other members.
 

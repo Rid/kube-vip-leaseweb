@@ -3,9 +3,9 @@ package packet
 import (
 	"fmt"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
 	"github.com/packethost/packngo"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
 	log "github.com/sirupsen/logrus"
 )
 

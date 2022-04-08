@@ -2,12 +2,11 @@ package manager
 
 import (
 	"context"
+	"fmt"
 	"os"
-	"strconv"
 	"syscall"
 	"time"
 
-	"github.com/kamhlos/upnp"
 	"github.com/rid/kube-vip-leaseweb/pkg/cluster"
 	log "github.com/sirupsen/logrus"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -16,7 +15,7 @@ import (
 )
 
 // Start will begin the Manager, which will start services and watch the configmap
-func (sm *Manager) startARP() error {
+func (sm *Manager) startLeaseweb() error {
 	var cpCluster *cluster.Cluster
 	var ns string
 	var err error
@@ -36,6 +35,14 @@ func (sm *Manager) startARP() error {
 		// Cancel the context, which will in turn cancel the leadership
 		cancel()
 	}()
+
+	if sm.config.EnableBGP {
+		return fmt.Errorf("The Leaseweb option does not support BGP")
+	}
+
+	if sm.config.EnableARP {
+		return fmt.Errorf("The Leaseweb option does not support ARP")
+	}
 
 	if sm.config.EnableControlPane {
 		cpCluster, err = cluster.InitCluster(sm.config, false)
@@ -77,21 +84,6 @@ func (sm *Manager) startARP() error {
 	id, err := os.Hostname()
 	if err != nil {
 		return err
-	}
-
-	// Before starting the leader Election enable any additional functionality
-	upnpEnabled, _ := strconv.ParseBool(os.Getenv("enableUPNP"))
-
-	if upnpEnabled {
-		sm.upnp = new(upnp.Upnp)
-		err := sm.upnp.ExternalIPAddr()
-		if err != nil {
-			log.Errorf("Error Enabling UPNP %s", err.Error())
-			// Set the struct to nil so nothing should use it in future
-			sm.upnp = nil
-		} else {
-			log.Infof("Successfully enabled UPNP, Gateway address [%s]", sm.upnp.GatewayOutsideIP)
-		}
 	}
 
 	log.Infof("Beginning cluster membership, namespace [%s], lock name [%s], id [%s]", ns, plunderLock, id)
