@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kube-vip/kube-vip/pkg/cluster"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/cluster"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
 	log "github.com/sirupsen/logrus"
 	"github.com/vishvananda/netlink"
 	v1 "k8s.io/api/core/v1"
@@ -88,12 +88,13 @@ func (sm *Manager) syncServices(service *v1.Service) error {
 
 	// Generate new Virtual IP configuration
 	newVip := kubevip.Config{
-		VIP:        newServiceAddress, //TODO support more than one vip?
-		Interface:  sm.config.Interface,
-		SingleNode: true,
-		EnableARP:  sm.config.EnableARP,
-		EnableBGP:  sm.config.EnableBGP,
-		VIPCIDR:    sm.config.VIPCIDR,
+		VIP:            newServiceAddress, //TODO support more than one vip?
+		Interface:      sm.config.Interface,
+		SingleNode:     true,
+		EnableARP:      sm.config.EnableARP,
+		EnableBGP:      sm.config.EnableBGP,
+		VIPCIDR:        sm.config.VIPCIDR,
+		EnableLeaseweb: sm.config.EnableLeaseweb,
 	}
 
 	// This instance wasn't found, we need to add it to the manager

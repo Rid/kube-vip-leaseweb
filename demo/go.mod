@@ -1,3 +1,3 @@
-module github.com/kube-vip/kube-vip/demo
+module github.com/rid/kube-vip-leaseweb/demo
 
 go 1.13

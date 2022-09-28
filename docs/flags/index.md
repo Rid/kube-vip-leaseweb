@@ -49,6 +49,10 @@ These flags are typically used in the `kube-vip` manifest generation process.
 |                     | `--metalProject`       | Equinix Metal Project (Name)                                       |                                                                                 |
 |                     | `--metalProjectID`     | Equinix Metal Project (UUID)                                       |                                                                                 |
 |                     | `--provider-config`    | Path to the Equinix Metal provider configuration                   | Requires the Equinix Metal CCM                                                  |
+| **Leaseweb**        |                        |                                                                    |                                                                                 |
+|                     | `--leasewebFIP`        | Enables Leaseweb floating IP API calls                             |                                                                                 |
+|                     | `--leasewebKey`        | Leaseweb API token                                                 |                                                                                 |
+|                     | `--provider-config`    | Path to the Leaseweb provider configuration                        |                                                                                 |
 
 ## Environment Variables
 
@@ -99,3 +103,7 @@ More environment variables can be read through the `pkg/kubevip/config_envvar.go
 |                     | `vip_packetproject`    | Equinix Metal Project (Name)                                |                                                                                 |
 |                     | `vip_packetprojectid`  | Equinix Metal Project (UUID)                                |                                                                                 |
 |                     | `provider_config`      | Path to the Equinix Metal provider configuration            | Requires the Equinix Metal CCM                                                  |
+| **Leaseweb**        |                        |                                                             | (                                                                               |
+|                     | `vip_leaseweb`         | Enables Leaseweb floating IP API calls                      |                                                                                 |
+|                     | `LEASEWEB_AUTH_TOKEN`  | Leaseweb API token                                          |                                                                                 |
+|                     | `provider_config`      | Path to the Leaseweb provider configuration                 |                                                                                |

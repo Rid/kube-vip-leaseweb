@@ -37,9 +37,9 @@ Set the `INTERFACE` name to the name of the interface on the control plane(s) wh
 
 Get the latest version of the `kube-vip` release by parsing the GitHub API. This step requires that `jq` and `curl` are installed.
 
-`KVVERSION=$(curl -sL https://api.github.com/repos/kube-vip/kube-vip/releases | jq -r ".[0].name")`
+`KVVERSION=$(curl -sL https://api.github.com/repos/rid/kube-vip-leaseweb/releases | jq -r ".[0].name")`
 
-To set manually instead, find the desired [release tag](https://github.com/kube-vip/kube-vip/releases):
+To set manually instead, find the desired [release tag](https://github.com/rid/kube-vip-leaseweb/releases):
 
 `export KVVERSION=v0.4.0`
 
@@ -51,11 +51,11 @@ Depending on the container runtime, use one of the two aliased commands to creat
 
 For containerd, run the below command:
 
-`alias kube-vip="ctr run --rm --net-host ghcr.io/kube-vip/kube-vip:$KVVERSION vip /kube-vip"`
+`alias kube-vip="ctr run --rm --net-host ghcr.io/rid/kube-vip-leaseweb:$KVVERSION vip /kube-vip"`
 
 For Docker, run the below command:
 
-`alias kube-vip="docker run --network host --rm ghcr.io/kube-vip/kube-vip:$KVVERSION"`
+`alias kube-vip="docker run --network host --rm ghcr.io/rid/kube-vip-leaseweb:$KVVERSION"`
 
 ### ARP
 
@@ -115,7 +115,7 @@ spec:
       value: "1"
     - name: address
       value: 192.168.0.40
-    image: ghcr.io/kube-vip/kube-vip:v0.4.0
+    image: ghcr.io/rid/kube-vip-leaseweb:v0.4.0
     imagePullPolicy: Always
     name: kube-vip
     resources: {}
@@ -202,7 +202,7 @@ spec:
       value: 192.168.0.10:65000::false,192.168.0.11:65000::false
     - name: address
       value: 192.168.0.40
-    image: ghcr.io/kube-vip/kube-vip:v0.3.9
+    image: ghcr.io/rid/kube-vip-leaseweb:v0.3.9
     imagePullPolicy: Always
     name: kube-vip
     resources: {}

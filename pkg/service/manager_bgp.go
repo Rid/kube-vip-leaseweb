@@ -6,9 +6,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/equinixmetal"
 	"github.com/packethost/packngo"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/equinixmetal"
 	log "github.com/sirupsen/logrus"
 )
 

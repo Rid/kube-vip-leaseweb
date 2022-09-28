@@ -4,8 +4,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/detector"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/detector"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -300,6 +300,16 @@ func ParseEnvironment(c *Config) error {
 	env = os.Getenv(bgpSourceIF)
 	if env != "" {
 		c.BGPConfig.SourceIF = env
+	}
+
+	// Enable the Leaseweb API calls
+	env = os.Getenv(vipLeaseweb)
+	if env != "" {
+		b, err := strconv.ParseBool(env)
+		if err != nil {
+			return err
+		}
+		c.EnableLeaseweb = b
 	}
 
 	// BGP Source Address

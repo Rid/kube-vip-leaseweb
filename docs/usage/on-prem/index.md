@@ -15,7 +15,7 @@ The `kube-vip` cloud provider can be used to populate an IP address for Services
 The `kube-vip` cloud provider can be installed from the latest release in the `main` branch by using the following command:
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kube-vip/kube-vip-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/rid/kube-vip-leaseweb-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml
 ```
 
 ## Create a global CIDR or IP Range

@@ -6,9 +6,9 @@ import (
 	"github.com/packethost/packngo"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
-	"github.com/kube-vip/kube-vip/pkg/vip"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/vip"
 )
 
 // StartSingleNode will start a single node cluster

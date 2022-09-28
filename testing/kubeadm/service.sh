@@ -16,7 +16,7 @@ logr "INFO" "Creating network range configmap"
 ssh $NODE01 "kubectl create configmap -n kube-system kubevip --from-literal range-global=192.168.0.220-192.168.0.222" >> $logfile
 
 logr "INFO" "Deploying kube-vip.io Controller"
-ssh $NODE01 "kubectl apply -f https://raw.githubusercontent.com/kube-vip/kube-vip-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml" >> $logfile
+ssh $NODE01 "kubectl apply -f https://raw.githubusercontent.com/rid/kube-vip-leaseweb-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml" >> $logfile
 
 logr "INFO" "Creating \"nginx\" deployment"
 ssh $NODE01 "kubectl apply -f https://k8s.io/examples/application/deployment.yaml" >> $logfile

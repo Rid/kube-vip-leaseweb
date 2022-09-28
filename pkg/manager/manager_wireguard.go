@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/kamhlos/upnp"
-	"github.com/kube-vip/kube-vip/pkg/wireguard"
+	"github.com/rid/kube-vip-leaseweb/pkg/wireguard"
 	log "github.com/sirupsen/logrus"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/leaderelection"

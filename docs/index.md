@@ -57,8 +57,8 @@ There are two main routes for deploying `kube-vip`: either through a [static Pod
 
 ## Links
 
-- [Kube-Vip Cloud Provider Repository](https://github.com/kube-vip/kube-vip-cloud-provider)
-- [Kube-Vip Repository](https://github.com/kube-vip/kube-vip)
+- [Kube-Vip Cloud Provider Repository](https://github.com/rid/kube-vip-leaseweb-cloud-provider)
+- [Kube-Vip Repository](https://github.com/rid/kube-vip-leaseweb)
 - [Kube-Vip RBAC manifest (required for the DaemonSet)](https://kube-vip.io/manifests/rbac.yaml)
 
 ## Copyright

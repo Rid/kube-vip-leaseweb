@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/davecgh/go-spew/spew"

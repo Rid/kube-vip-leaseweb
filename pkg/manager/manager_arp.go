@@ -13,7 +13,7 @@ import (
 	"k8s.io/client-go/tools/leaderelection"
 	"k8s.io/client-go/tools/leaderelection/resourcelock"
 
-	"github.com/kube-vip/kube-vip/pkg/cluster"
+	"github.com/rid/kube-vip-leaseweb/pkg/cluster"
 )
 
 // Start will begin the Manager, which will start services and watch the configmap

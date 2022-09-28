@@ -71,6 +71,9 @@ const (
 	//providerConfig defines a path to a configuration that should be parsed
 	providerConfig = "provider_config"
 
+	//vipLeaseweb defines that the leaseweb API will be used for FIP
+	vipLeaseweb = "vip_leaseweb"
+
 	//bgpEnable defines if BGP should be enabled
 	bgpEnable = "bgp_enable"
 	//bgpRouterID defines the routerID for the BGP server

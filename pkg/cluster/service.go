@@ -8,12 +8,14 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/equinixmetal"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
-	"github.com/kube-vip/kube-vip/pkg/loadbalancer"
-	"github.com/kube-vip/kube-vip/pkg/vip"
 	"github.com/packethost/packngo"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/equinixmetal"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/leaseweb"
+	"github.com/rid/kube-vip-leaseweb/pkg/loadbalancer"
+	"github.com/rid/kube-vip-leaseweb/pkg/vip"
+	"github.com/rid/leasewebgo"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -60,6 +62,24 @@ func (cluster *Cluster) vipService(ctxArp, ctxDNS context.Context, c *kubevip.Co
 			if err != nil {
 				log.Error(err)
 			}
+		}
+	}
+
+	if c.EnableLeaseweb {
+		if !c.EnableBGP && !c.EnableARP {
+			// Attempt to attach the FIP in the standard manner
+			log.Debugf("Attaching the Leaseweb FIP through the API to this host")
+			var leasewebClient *leasewebgo.Client
+			leasewebClient, err = leasewebgo.NewClient()
+			if err != nil {
+				log.Error(err)
+			}
+			err = leaseweb.AttachFIP(leasewebClient, c, cluster.Network.IP())
+			if err != nil {
+				log.Error(err)
+			}
+		} else {
+			return fmt.Errorf("Leaseweb requires BGP and ARP to be disabled")
 		}
 	}
 
@@ -191,6 +211,24 @@ func (cluster *Cluster) StartLoadBalancerService(c *kubevip.Config, bgp *bgp.Ser
 		err = cluster.Network.AddIP()
 		if err != nil {
 			log.Warnf("%v", err)
+		}
+	}
+	if c.EnableLeaseweb {
+		if !c.EnableBGP && !c.EnableARP {
+			// Attempt to attach the FIP in the standard manner
+			log.Debugf("Attaching the Leaseweb FIP through the API to this host")
+			var leasewebClient *leasewebgo.Client
+			leasewebClient, err = leasewebgo.NewClient()
+			if err != nil {
+				log.Error(err)
+			}
+
+			err = leaseweb.AttachFIP(leasewebClient, c, cluster.Network.IP())
+			if err != nil {
+				log.Error(err)
+			}
+		} else {
+			log.Fatalf("Leaseweb requires BGP and ARP to be disabled")
 		}
 	}
 	if c.EnableARP {

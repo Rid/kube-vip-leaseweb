@@ -12,9 +12,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/util/retry"
 
-	"github.com/kube-vip/kube-vip/pkg/cluster"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
-	"github.com/kube-vip/kube-vip/pkg/vip"
+	"github.com/rid/kube-vip-leaseweb/pkg/cluster"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/vip"
 )
 
 func (sm *Manager) createDHCPService(newServiceUID string, newVip *kubevip.Config, newService *Instance, service *v1.Service) error {

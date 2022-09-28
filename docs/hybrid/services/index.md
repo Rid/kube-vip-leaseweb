@@ -27,7 +27,7 @@ The below instructions *should just work* on Kubernetes regardless of architectu
 **Install the `kube-vip-cloud-provider`**
 
 ```
-$ kubectl apply -f https://raw.githubusercontent.com/kube-vip/kube-vip-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/rid/kube-vip-leaseweb-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml
 ```
 
 It uses a `statefulSet` and can always be viewed with the following command:
@@ -58,7 +58,7 @@ Creating services of `type: LoadBalancer` in *any namespace* will now take addre
 **Install the `kube-vip-cloud-provider`**
 
 ```
-$ kubectl apply -f https://raw.githubusercontent.com/kube-vip/kube-vip-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/rid/kube-vip-leaseweb-cloud-provider/main/manifest/kube-vip-cloud-controller.yaml
 ```
 
 The following output should appear when the manifest is applied: 

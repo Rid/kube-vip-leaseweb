@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kube-vip/kube-vip/pkg/vip"
+	"github.com/rid/kube-vip-leaseweb/pkg/vip"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 

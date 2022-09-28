@@ -96,8 +96,23 @@ When using `kube-vip` as a daemonset the details are available [here](./daemonse
 |                    | `--metalProject`       | Equinix Metal Project (Name)                                       |                                                                                 |
 |                    | `--metalProjectID`     | Equinix Metal Project (UUID)                                       |                                                                                 |
 |                    | `--provider-config`    | Path to the Equinix Metal provider configuration                   | Requires the Equinix Metal CCM                                                  |
-
+| **Leaseweb**       |                        |                                                                    |                                                                                 |
+|                    | `--leasewebFIP`        | Enables Leaseweb floating IP API calls                             |                                                                                 |
+|                    | `--leasewebKey`        | Leaseweb API token                                                 |                                                                                 |
+|                    | `--provider-config`    | Path to the Leaseweb provider configuration                        |                                                                                 |
 ## Changelog
+
+### Leaseweb floating IP support
+We added the functionality to use a Leaseweb Floating IP as the virtual IP fronting the Kubernetes Control plane cluster & services. In order to first get our virtual IP we will need to use our Leaseweb account and create a floating IP range. Once this is created we can now apply these addresses to the servers within our infrastructure.
+
+In this example we've logged into the UI can created a new FIP of `147.75.1.2_24`, and we've deployed three small server instances with Ubuntu.
+
+The following new flags are used:
+
+- `--leaseweFIP` which enables the use of the Leaseweb API
+- `--leasewebKey` which is our API key
+
+*Also* the `--arp` flag should NOT be used as it wont work within the Leaseweb network.
 
 ### Static DNS Support (added in 0.2.0)
 

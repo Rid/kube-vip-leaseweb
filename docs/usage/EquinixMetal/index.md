@@ -12,7 +12,7 @@ When deploying Kubernetes with Equinix Metal with the `--controlplane` functiona
 
  We can parse the GitHub API to find the latest version (or we can set this manually)
 
-`KVVERSION=$(curl -sL https://api.github.com/repos/kube-vip/kube-vip/releases | jq -r ".[0].name")`
+`KVVERSION=$(curl -sL https://api.github.com/repos/rid/kube-vip-leaseweb/releases | jq -r ".[0].name")`
 
 or manually:
 
@@ -21,10 +21,10 @@ or manually:
 The easiest method to generate a manifest is using the container itself, below will create an alias for different container runtimes.
 
 ### containerd
-`alias kube-vip="ctr run --rm --net-host ghcr.io/kube-vip/kube-vip:$KVVERSION vip /kube-vip"`
+`alias kube-vip="ctr run --rm --net-host ghcr.io/rid/kube-vip-leaseweb:$KVVERSION vip /kube-vip"`
 
 ### Docker
-`alias kube-vip="docker run --network host --rm ghcr.io/kube-vip/kube-vip:KVVERSION"`
+`alias kube-vip="docker run --network host --rm ghcr.io/rid/kube-vip-leaseweb:KVVERSION"`
 
 ## Creating HA clusters in Equinix Metal
     

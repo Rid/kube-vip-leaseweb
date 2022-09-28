@@ -1,8 +1,8 @@
 package cluster
 
 import (
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
-	"github.com/kube-vip/kube-vip/pkg/vip"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/vip"
 	log "github.com/sirupsen/logrus"
 )
 

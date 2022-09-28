@@ -1,10 +1,10 @@
 # kube-vip
 
-High Availability and Load-Balancing 
+High Availability and Load-Balancing with support for Leaseweb Floating IPs
 
-![](https://github.com/kube-vip/kube-vip/raw/main/kube-vip.png)
+![](https://github.com/rid/kube-vip-leaseweb/raw/main/kube-vip.png)
 
-[![Build and publish main image regularly](https://github.com/kube-vip/kube-vip/actions/workflows/main.yaml/badge.svg)](https://github.com/kube-vip/kube-vip/actions/workflows/main.yaml)
+[![Build and publish main image regularly](https://github.com/rid/kube-vip-leaseweb/actions/workflows/main.yaml/badge.svg)](https://github.com/rid/kube-vip-leaseweb/actions/workflows/main.yaml)
 
 ## Overview
 Kubernetes Virtual IP and Load-Balancer for both control plane and Kubernetes services

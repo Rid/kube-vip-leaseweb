@@ -9,12 +9,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/kube-vip/kube-vip/pkg/k8s"
+	"github.com/rid/kube-vip-leaseweb/pkg/k8s"
 
 	"github.com/kamhlos/upnp"
-	"github.com/kube-vip/kube-vip/pkg/bgp"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/rid/kube-vip-leaseweb/pkg/bgp"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
 	log "github.com/sirupsen/logrus"
 	"k8s.io/client-go/kubernetes"
 )
@@ -113,6 +113,13 @@ func (sm *Manager) Start() error {
 	// Add Notification for SIGKILL (sent from Kubernetes)
 	signal.Notify(sm.signalChan, syscall.SIGKILL) //nolint
 
+	// If Leaseweb is enabled then we start a LeaderElection that will use the FIP to advertise VIPs
+	if sm.config.EnableLeaseweb {
+		log.Infoln("Starting Kube-vip Manager with the Leaseweb engine")
+		log.Infof("Namespace [%s], Hybrid mode [%t]", sm.config.Namespace, sm.config.EnableControlPane && sm.config.EnableServices)
+		return sm.startLeaseweb()
+	}
+
 	// If BGP is enabled then we start a server instance that will broadcast VIPs
 	if sm.config.EnableBGP {
 
@@ -142,7 +149,7 @@ func (sm *Manager) Start() error {
 		return sm.startTableMode()
 	}
 
-	log.Errorln("prematurely exiting Load-balancer as no modes [ARP/BGP/Wireguard] are enabled")
+	log.Errorln("prematurely exiting Load-balancer as no modes [ARP/BGP/Wireguard/Leaseweb] are enabled")
 	return nil
 }
 

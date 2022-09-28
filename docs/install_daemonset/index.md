@@ -99,7 +99,7 @@ spec:
           value: "1"
         - name: address
           value: 192.168.0.40
-        image: ghcr.io/kube-vip/kube-vip:v0.4.0
+        image: ghcr.io/rid/kube-vip-leaseweb:v0.4.0
         imagePullPolicy: Always
         name: kube-vip
         resources: {}
@@ -210,7 +210,7 @@ spec:
           value: 192.168.0.10:65000::false,192.168.0.11:65000::false
         - name: address
           value: 192.168.0.40
-        image: ghcr.io/kube-vip/kube-vip:v0.4.0
+        image: ghcr.io/rid/kube-vip-leaseweb:v0.4.0
         imagePullPolicy: Always
         name: kube-vip
         resources: {}

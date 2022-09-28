@@ -6,13 +6,13 @@ import (
 	"time"
 
 	"github.com/insomniacslk/dhcp/dhcpv4/nclient4"
-	"github.com/kube-vip/kube-vip/pkg/kubevip"
-	"github.com/kube-vip/kube-vip/pkg/vip"
+	"github.com/rid/kube-vip-leaseweb/pkg/kubevip"
+	"github.com/rid/kube-vip-leaseweb/pkg/vip"
 	log "github.com/sirupsen/logrus"
 	"github.com/vishvananda/netlink"
 	v1 "k8s.io/api/core/v1"
 
-	"github.com/kube-vip/kube-vip/pkg/cluster"
+	"github.com/rid/kube-vip-leaseweb/pkg/cluster"
 )
 
 const dhcpTimeout = 10 * time.Second
@@ -64,6 +64,7 @@ func NewInstance(service *v1.Service, config *kubevip.Config) (*Instance, error)
 		VIPSubnet:          config.VIPSubnet,
 		EnableRoutingTable: config.EnableRoutingTable,
 		RoutingTableID:     config.RoutingTableID,
+		EnableLeaseweb:     config.EnableLeaseweb,
 	}
 
 	// Create new service

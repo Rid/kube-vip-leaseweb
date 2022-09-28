@@ -49,7 +49,7 @@ submit pull requests to have their changes considered and merged into the
 project's repository.
 
 1. Fork your own copy of the repository to your GitHub account by clicking on
-   `Fork` button on [kube-vip's GitHub repository](https://github.com/kube-vip/kube-vip).
+   `Fork` button on [kube-vip's GitHub repository](https://github.com/rid/kube-vip-leaseweb).
 2. Clone the forked repository on your local setup.
 
     ```bash
@@ -59,7 +59,7 @@ project's repository.
     Add a remote upstream to track upstream kube-vip repository.
 
     ```bash
-    git remote add upstream https://github.com/kube-vip/kube-vip
+    git remote add upstream https://github.com/rid/kube-vip-leaseweb
     ```
 
     Never push to upstream remote
@@ -99,7 +99,7 @@ project's repository.
     ```
 
 8. Create a Pull request on GitHub.
-   Visit your fork at `https://github.com/kube-vip/kube-vip` and click
+   Visit your fork at `https://github.com/rid/kube-vip-leaseweb` and click
    `Compare & Pull Request` button next to your `remoteBranchName` branch.
 
 ### Getting reviewers
@@ -194,7 +194,7 @@ For more information about the tests we run as part of CI, please refer to
     ```
 
 5. Create a Pull Request on GitHub.
-   Visit your fork at `https://github.com/kube-vip/kube-vip` and click
+   Visit your fork at `https://github.com/rid/kube-vip-leaseweb` and click
    `Compare & Pull Request` button next to your `remoteRevertName` branch.
 
 ### Sign-off Your Work
@@ -242,12 +242,12 @@ discussion, see [docs/issue-management.md](docs/contributors/issue-management.md
 ### Filing An Issue
 
 Help is always appreciated. If you find something that needs fixing, please file
-an issue [here](https://github.com/kube-vip/kube-vip/issues). Please ensure
+an issue [here](https://github.com/rid/kube-vip-leaseweb/issues). Please ensure
 that the issue is self explanatory and has enough information for an assignee to
 get started.
 
 Before picking up a task, go through the existing
-[issues](https://github.com/kube-vip/kube-vip/issues) and make sure that your
+[issues](https://github.com/rid/kube-vip-leaseweb/issues) and make sure that your
 change is not already being worked on. If it does not exist, please create a new
 issue and discuss it with other members.
 
